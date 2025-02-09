@@ -396,12 +396,13 @@
             bool lock_free = (threads == 1);
 
             std::cout<< "step 26" <<std::endl;
-#pragma omp parallel for schedule(dynamic, 1)
+// #pragma omp parallel for schedule(dynamic, 1)
             for (index_type node_id = 0; node_id < num_node; node_id++) {
                 int thread_id = omp_get_thread_num();
                 add_point(node_id, ws, thread_id, lock_free);
             }
 
+            std::cout<< "step 27" <<std::endl;
             auto sort_neighbors_for_node = [&](index_type node_id, workspace_t& ws, int thread_id) {
                 auto& hnsw = ws.hnsw;
                 auto& graph_l0 = hnsw.graph_l0;
@@ -432,11 +433,14 @@
                 }
             };
 
-#pragma omp parallel for schedule(dynamic, 1)
+            std::cout<< "step 28" <<std::endl;
+// #pragma omp parallel for schedule(dynamic, 1)
             for (index_type node_id = 0; node_id < num_node; node_id++) {
                 int thread_id = omp_get_thread_num();
                 sort_neighbors_for_node(node_id, ws, thread_id);
             }
+
+            std::cout<< "step 29" <<std::endl;
         }
 
         // Algorithm 2 of HNSW paper
