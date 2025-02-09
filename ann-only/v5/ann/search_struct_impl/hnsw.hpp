@@ -263,6 +263,7 @@
         // if max_level_upper_bound >= 0, the number of lavels in the hierarchical part is upper bounded by the give number
         template<class MAT_T>
         void train(const MAT_T &X_trn, index_type M, index_type efC, int threads=1, int max_level_upper_bound=-1) {
+            std::cout<< "step 7" <<std::endl;
             // workspace to store thread-local variables
             struct workspace_t {
                 HNSW<dist_t, FeatVec_T>& hnsw;

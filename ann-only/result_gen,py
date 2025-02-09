@@ -1,0 +1,22 @@
+import os
+
+results={}
+
+def getResults():
+    for fileName in os.listdir():
+        with open(fileName, "r") as file:
+            for line in file:
+                if 'recall : ' in line:
+                    recall=float(line.replace('recall : ','').replace('\n',''))
+                    dataset=fileName.split('-')[0]
+                    if not dataset in results:
+                        results[dataset]=[]
+                    results[dataset].append(recall)
+
+os.chdir('/home/saminyeaser/OSU study/Research-Implementation/models/FINGER/ann-only/v4/logs')
+getResults()
+os.chdir('/home/saminyeaser/OSU study/Research-Implementation/models/FINGER/ann-only/v5/logs')
+getResults()
+
+print(results)
+print(len(results))

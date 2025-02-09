@@ -190,6 +190,7 @@ namespace ann {
         }
 
         inline void train(const pecos::drm_t& X_trn, index_type num_local_codebooks, size_t sub_sample_points=0, int seed=0, size_t max_iter=10, int threads=32) {
+            std::cout<< "step 2" <<std::endl;
             size_t dimension = X_trn.cols;
             if (dimension % num_local_codebooks != 0) {
                 throw std::runtime_error("Original dimension must be divided by subspace dimension");

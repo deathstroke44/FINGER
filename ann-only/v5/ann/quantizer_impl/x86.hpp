@@ -1142,7 +1142,7 @@ namespace ann {
 
         inline void train(std::vector<dist_t>& X_trn, std::vector<index_type>& encoded_result, std::vector<size_t> idx, index_type n_data, size_t dimension, index_type num_cluster_centroids, size_t sub_sample_points=0, int seed=0, size_t max_iter=10, int threads=32) {
            
-
+            std::cout<< "step 5" <<std::endl;
             std::srand(seed);
             num_codebooks = num_cluster_centroids; 
             codebook.resize(num_cluster_centroids * dimension);

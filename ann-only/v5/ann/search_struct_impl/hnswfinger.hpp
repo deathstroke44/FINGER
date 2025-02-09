@@ -287,6 +287,7 @@
             int threads=1,
             int max_level_upper_bound=-1
         ) {
+            std::cout<< "step 8" <<std::endl;
             HNSW<dist_t, feat_vec_t>* hnsw = new HNSW<dist_t, feat_vec_t>();
             hnsw->train(X_trn, M, efC, threads, max_level_upper_bound);
             this->num_node = hnsw->num_node;
