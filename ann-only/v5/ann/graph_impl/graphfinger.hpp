@@ -167,8 +167,8 @@
                    dist_t* cc  = G.get_node_feat(i).val;
                    if (j == pick) {
                        for (int k = 0; k < dimension ; k++) {
-                           sampled_residuals[(total_valid_nodes-1) * dimension + k] =  cc2[k] -  dist / squared_norm_of_elements[i] * cc[k];
-                           pick1_vec.push_back(sampled_residuals[(total_valid_nodes-1) * dimension + k]);
+                           sampled_residuals[(i) * dimension + k] =  cc2[k] -  dist / squared_norm_of_elements[i] * cc[k];
+                           pick1_vec.push_back(sampled_residuals[(i) * dimension + k]);
                        }
                        for (int k = 0; k < dimension; k++) {
                           norm1 += ( pick1_vec[k] * pick1_vec[k] );
