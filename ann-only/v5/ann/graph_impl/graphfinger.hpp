@@ -125,14 +125,14 @@
                     G.get_node_feat(i).val,
                     G.get_node_feat(i).val,
                     dimension
-                );
+                );sampled_residuals
                 squared_norm_of_elements.push_back(norm_);
                 const auto neighbors = G.get_neighborhood(i, 0);
                 auto size = neighbors.degree();
                 total_edge_links += size;
-                if (size <= 1 || norm_ < 1e-6) {
-                    continue;
-                }
+                // if (size <= 1 || norm_ < 1e-6) {
+                //     continue;
+                // }
 
                 total_valid_nodes += 1;
                 std::uniform_int_distribution<> dis(0, size-1);
