@@ -130,9 +130,9 @@
                 const auto neighbors = G.get_neighborhood(i, 0);
                 auto size = neighbors.degree();
                 total_edge_links += size;
-                // if (size <= 1 || norm_ < 1e-6) {
-                //     continue;
-                // }
+                if (size <= 1 || norm_ < 1e-6) {
+                    continue;
+                }
 
                 total_valid_nodes += 1;
                 std::uniform_int_distribution<> dis(0, size-1);
@@ -167,8 +167,8 @@
                    dist_t* cc  = G.get_node_feat(i).val;
                    if (j == pick) {
                        for (int k = 0; k < dimension ; k++) {
-                           sampled_residuals[i * dimension + k] =  cc2[k] -  dist / squared_norm_of_elements[i] * cc[k];
-                           pick1_vec.push_back(sampled_residuals[i * dimension + k]);
+                           sampled_residuals[(total_valid_nodes-1) * dimension + k] =  cc2[k] -  dist / squared_norm_of_elements[i] * cc[k];
+                           pick1_vec.push_back(sampled_residuals[(total_valid_nodes-1) * dimension + k]);
                        }
                        for (int k = 0; k < dimension; k++) {
                           norm1 += ( pick1_vec[k] * pick1_vec[k] );
