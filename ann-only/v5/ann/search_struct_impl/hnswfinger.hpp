@@ -305,12 +305,16 @@
             graph_l1.node_mem_size = hnsw->graph_l1.node_mem_size;
             graph_l1.level_mem_size = hnsw->graph_l1.level_mem_size;
             graph_l1.buffer.resize(hnsw->graph_l1.buffer.size());
+            std::cout<< "step 30" <<std::endl;
             memcpy(graph_l1.buffer.data(), hnsw->graph_l1.buffer.data(), hnsw->graph_l1.buffer.size() * sizeof(index_type));
-
+            std::cout<< "step 31" <<std::endl;
             //graph_l0_finger.build_quantizer(X_trn, subspace_dimension, sub_sample_points);
             graph_l0_finger.build_graph(hnsw->graph_l0);
+            std::cout<< "step 32" <<std::endl;
             delete hnsw;
+            std::cout<< "step 33" <<std::endl;
             feature_vec.init(X_trn, -1);
+            std::cout<< "step 24" <<std::endl;
         }
 
 
