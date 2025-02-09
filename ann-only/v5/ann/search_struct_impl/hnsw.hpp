@@ -363,7 +363,7 @@
             this->maxM = M;
             this->maxM0 = 2 * M;
             this->efC = efC;
-
+            std::cout<< "step 20" <<std::endl;
             threads = (threads <= 0) ? omp_get_num_procs() : threads;
             omp_set_num_threads(threads);
             workspace_t ws(*this, threads);
@@ -372,6 +372,7 @@
             auto& node2level = ws.node2level;
             node2level.resize(num_node);
             const float mult_l = 1.0 / log(1.0 * this->maxM);  // m_l in Sec 4.1 of the HNSW paper
+            std::cout<< "step 21" <<std::endl;
             random_number_generator<> rng;
             for (index_type node_id = 0; node_id < num_node; node_id++) {
                 // line 4 of Algorithm 1 in HNSW paper
@@ -381,16 +382,20 @@
                     node2level[node_id] = std::min<index_type>(node2level[node_id], (index_type)max_level_upper_bound);
                 }
             }
-
+            std::cout<< "step 22" <<std::endl;
             max_level_upper_bound = *std::max_element(node2level.begin(), node2level.end());
-
+            std::cout<< "step 23" <<std::endl;
             graph_l0.init(X_trn, this->maxM0);
+            std::cout<< "step 24" <<std::endl;
             graph_l1.init(X_trn, this->maxM, max_level_upper_bound);
+            std::cout<< "step 25" <<std::endl;
 
             this->max_level = 0;
             this->init_node = 0;
 
             bool lock_free = (threads == 1);
+
+            std::cout<< "step 26" <<std::endl;
 #pragma omp parallel for schedule(dynamic, 1)
             for (index_type node_id = 0; node_id < num_node; node_id++) {
                 int thread_id = omp_get_thread_num();
