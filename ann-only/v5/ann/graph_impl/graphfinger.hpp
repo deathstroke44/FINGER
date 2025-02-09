@@ -119,7 +119,7 @@
             // collect sampled_residuals
             int total_valid_nodes = 0;
             int total_edge_links = 0;
-
+            std::cout<< "step 41" <<std::endl;
             for (index_type i = 0; i < num_node; i++) {
                 dist_t norm_ = do_dot_product_simd(
                     G.get_node_feat(i).val,
@@ -198,15 +198,20 @@
                 }
           }
           // Calculate the Total Residual Basis
+          std::cout<< "step 42" <<std::endl;
           Eigen::MatrixXf X(total_valid_nodes,dimension);
           for(int i = 0; i < total_valid_nodes; i++){
               for(int j = 0; j < dimension;j++){
                   X(i,j) = sampled_residuals[i * dimension + j];
               }
           }
+          std::cout<< "step 43" <<std::endl;
           Eigen::BDCSVD<Eigen::MatrixXf> SVD(X, Eigen::ComputeThinU | Eigen::ComputeThinV);
+          std::cout<< "step 44" <<std::endl;
           Eigen::MatrixXf U = SVD.matrixU();
+          std::cout<< "step 45" <<std::endl;
           Eigen::MatrixXf V = SVD.matrixV();
+          std::cout<< "step " <<std::endl;
           std::cout<<V.rows()<<" "<<V.cols()<<" "<<residual1.size()<<" "<<residual2.size()<<" "<<sampled_real_ip.size()<<std::endl;
           //Eigen::MatrixXf recover2 = U * S * V.transpose();
           Eigen::MatrixXf projMatrix;
