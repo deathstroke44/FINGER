@@ -125,7 +125,7 @@
                     G.get_node_feat(i).val,
                     G.get_node_feat(i).val,
                     dimension
-                );sampled_residuals
+                );
                 squared_norm_of_elements.push_back(norm_);
                 const auto neighbors = G.get_neighborhood(i, 0);
                 auto size = neighbors.degree();
