@@ -60,6 +60,8 @@ void run_dense(std::string data_dir , char* model_path, index_type M, index_type
     std::chrono::steady_clock::time_point start_time;
     std::chrono::steady_clock::time_point end_time;
     start_time=std::chrono::steady_clock::now();
+    std::cout<< "step 0" <<std::endl;
+    std::cout<< "step 1" <<std::endl;
     indexer.train(X_trn, M, efC, sub_dimension, 200, threads, max_level);
     end_time=std::chrono::steady_clock::now();
     std::cout<< "training time: " <<(std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count())<<std::endl;
@@ -136,7 +138,7 @@ int main(int argc, char** argv) {
     std::string space_name = argv[3];
     index_type M = (index_type) atoi(argv[4]);
     index_type efC = (index_type) atoi(argv[5]);
-    int threads = atoi(argv[6]);
+    int threads = 1;
     int efs = atoi(argv[7]);
     num_rerank = atoi(argv[8]);
     sub_dimension = atoi(argv[9]);
