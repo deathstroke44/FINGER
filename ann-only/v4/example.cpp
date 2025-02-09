@@ -53,22 +53,36 @@ void run_dense(std::string data_dir , char* model_path, index_type M, index_type
     auto X_tst = npy_to_drm(X_tst_npy);
     auto Y_tst = npy_to_drm(Y_tst_npy);
     // model prepare
-    index_type topk = 10;
+    index_type topk = Y_tst.cols;
     //pecos::ann::HNSW<float, feat_vec_t> indexer;
     pecos::ann::HNSWFinger<float, feat_vec_t> indexer;
     //pecos::ann::HNSWProductQuantizer4Bits<float, feat_vec_t> indexer;
     FILE* fp = fopen(model_path, "rb");
-    if (!fp) {
-       // indexer.train(X_trn, M, efC, threads, max_level);
-        indexer.train(X_trn, M, efC, sub_dimension, 200, threads, max_level);
-        std::cout<< "After train" <<std::endl;
-        indexer.save(model_path);
-        std::cout<< "After save" <<std::endl;
-        indexer.load(model_path);
-    } else {
-        indexer.load(model_path);
-        fclose(fp);
-    }
+    std::chrono::steady_clock::time_point start_time;
+    std::chrono::steady_clock::time_point end_time;
+    start_time=std::chrono::steady_clock::now();
+    indexer.train(X_trn, M, efC, sub_dimension, 200, threads, max_level);
+    end_time=std::chrono::steady_clock::now();
+    std::cout<< "training time: " <<(std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count())<<std::endl;
+    std::cout<< "After train" <<std::endl;
+    indexer.save(model_path);
+    std::cout<< "After save" <<std::endl;
+    indexer.load(model_path);
+    // if (!fp) {
+    //    // indexer.train(X_trn, M, efC, threads, max_level);
+        
+    //     start_time=std::chrono::steady_clock::now();
+    //     indexer.train(X_trn, M, efC, sub_dimension, 200, threads, max_level);
+    //     end_time=std::chrono::steady_clock::now();
+    //     std::cout<< "training time: " <<(std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count())<<std::endl;
+    //     std::cout<< "After train" <<std::endl;
+    //     indexer.save(model_path);
+    //     std::cout<< "After save" <<std::endl;
+    //     indexer.load(model_path);
+    // } else {
+    //     indexer.load(model_path);
+    //     fclose(fp);
+    // }
 
     // inference
     index_type num_data = X_tst.rows;
@@ -91,9 +105,14 @@ void run_dense(std::string data_dir , char* model_path, index_type M, index_type
         latency = std::min(latency, inner_latency);
     }
     double recall = 0.0;
+    double search_time=0.0;
     for (index_type idx = 0; idx < num_data; idx++) {
         //std::cout<<"QUERY NUMBER : "<<idx<<std::endl;
+        start_time=std::chrono::steady_clock::now();
         auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher, num_rerank);
+        end_time=std::chrono::steady_clock::now();
+
+        search_time=search_time+std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
         //auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher);
         std::unordered_set<pecos::csr_t::index_type> true_indices;
 
@@ -108,7 +127,8 @@ void run_dense(std::string data_dir , char* model_path, index_type M, index_type
     }
     recall = recall / num_data / topk;
     latency = latency / num_data / 1000.;
-    std::cout<< recall << " : " << 1.0 / latency * 1e3 << "," <<std::endl;
+    std::cout<< "search time" << " : " << search_time <<std::endl;
+    std::cout<< "recall" << " : " << recall <<std::endl;
 }
 
 int main(int argc, char** argv) {
