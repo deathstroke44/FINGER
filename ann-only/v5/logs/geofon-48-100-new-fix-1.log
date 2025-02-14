@@ -1,8 +1,33 @@
-128 128 253185 253185 253185
-0.361557 253185 0.121756 0.340215 0.428246 0.321273
+step 0
+step 1
+step 8
+step 7
+step 20
+step 21
+step 22
+step 23
+step 24
+step 25
+step 26
+step 27
+step 28
+step 29
+step 30
+step 31
+step 41
+step 42
+step 43
+step 44
+step 45
+step 
+128 128 253183 253183 253183
+0.370015 253183 0.120961 0.340788 0.426289 0.321086
 53
-training time: 347590382
+step 32
+step 33
+step 24
+training time: 183002889
 After train
 After save
-search time : 38303
-recall : 0.9735
+search time : 18541
+recall : 0.9743

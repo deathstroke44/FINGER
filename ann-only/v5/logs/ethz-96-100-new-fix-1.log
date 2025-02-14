@@ -1,8 +1,33 @@
-256 256 27752 27752 27752
-0.623619 27752 0.184493 0.379479 0.343701 0.323561
+step 0
+step 1
+step 8
+step 7
+step 20
+step 21
+step 22
+step 23
+step 24
+step 25
+step 26
+step 27
+step 28
+step 29
+step 30
+step 31
+step 41
+step 42
+step 43
+step 44
+step 45
+step 
+256 256 27652 27652 27652
+0.589032 27652 0.18495 0.381178 0.355544 0.324704
 53
-training time: 55737890
+step 32
+step 33
+step 24
+training time: 29105037
 After train
 After save
-search time : 33867
-recall : 0.9107
+search time : 16968
+recall : 0.9212

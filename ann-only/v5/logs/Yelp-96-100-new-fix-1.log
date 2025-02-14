@@ -1,8 +1,33 @@
-50 50 77021 77021 77021
-0.800296 77021 0.124096 0.222418 0.350583 0.203584
-48
-training time: 61952151
+step 0
+step 1
+step 8
+step 7
+step 20
+step 21
+step 22
+step 23
+step 24
+step 25
+step 26
+step 27
+step 28
+step 29
+step 30
+step 31
+step 41
+step 42
+step 43
+step 44
+step 45
+step 
+50 50 77028 77028 77028
+0.891774 77028 0.123588 0.222249 0.124085 0.246424
+53
+step 32
+step 33
+step 24
+training time: 50361650
 After train
 After save
-search time : 13574
-recall : 0.3794
+search time : 21332
+recall : 0.7155

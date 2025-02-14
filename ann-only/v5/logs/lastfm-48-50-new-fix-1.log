@@ -1,8 +1,33 @@
-65 65 289332 289332 289332
-0.89244 289332 0.210058 0.266602 0.548215 0.201663
-38
-training time: 226071292
+step 0
+step 1
+step 8
+step 7
+step 20
+step 21
+step 22
+step 23
+step 24
+step 25
+step 26
+step 27
+step 28
+step 29
+step 30
+step 31
+step 41
+step 42
+step 43
+step 44
+step 45
+step 
+65 65 289374 289374 289374
+0.91747 289374 0.209013 0.266423 0.218233 0.284921
+53
+step 32
+step 33
+step 24
+training time: 174707067
 After train
 After save
-search time : 12545
-recall : 0.5625
+search time : 15075
+recall : 0.9307

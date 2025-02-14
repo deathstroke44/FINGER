@@ -1,8 +1,33 @@
-150 150 10609 10609 10609
-0.43651 10609 0.166795 0.275255 0.3992 0.266205
-48
-training time: 7281135
+step 0
+step 1
+step 8
+step 7
+step 20
+step 21
+step 22
+step 23
+step 24
+step 25
+step 26
+step 27
+step 28
+step 29
+step 30
+step 31
+step 41
+step 42
+step 43
+step 44
+step 45
+step 
+150 150 10610 10610 10610
+0.428618 10610 0.163 0.271577 0.400037 0.266258
+53
+step 32
+step 33
+step 24
+training time: 4797678
 After train
 After save
-search time : 182962
-recall : 0.95992
+search time : 147823
+recall : 0.96451

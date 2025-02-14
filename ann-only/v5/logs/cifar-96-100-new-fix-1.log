@@ -1,8 +1,33 @@
-512 512 49948 49948 49948
-0.463053 49948 0.283543 0.13815 0.358296 0.137838
+step 0
+step 1
+step 8
+step 7
+step 20
+step 21
+step 22
+step 23
+step 24
+step 25
+step 26
+step 27
+step 28
+step 29
+step 30
+step 31
+step 41
+step 42
+step 43
+step 44
+step 45
+step 
+512 512 49953 49953 49953
+0.464006 49953 0.282048 0.137722 0.35739 0.137836
 48
-training time: 169223435
+step 32
+step 33
+step 24
+training time: 140922696
 After train
 After save
-search time : 116835
-recall : 0.994
+search time : 121342
+recall : 0.99425

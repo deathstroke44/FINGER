@@ -1,8 +1,33 @@
-300 300 17747 17747 17747
-0.456106 17747 0.137537 0.28506 0.358731 0.300918
+step 0
+step 1
+step 8
+step 7
+step 20
+step 21
+step 22
+step 23
+step 24
+step 25
+step 26
+step 27
+step 28
+step 29
+step 30
+step 31
+step 41
+step 42
+step 43
+step 44
+step 45
+step 
+300 300 17754 17754 17754
+0.468268 17754 0.135594 0.286176 0.357433 0.301367
 53
-training time: 33389716
+step 32
+step 33
+step 24
+training time: 13905437
 After train
 After save
-search time : 384290
-recall : 0.96871
+search time : 179008
+recall : 0.97073
