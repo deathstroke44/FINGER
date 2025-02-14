@@ -239,13 +239,13 @@ int main(int argc, char** argv) {
     char model_path[2048];
     sprintf(model_path, "%s/pecos.%s.M-%d_efC-%d_t-%d.bin", model_dir.c_str(), space_name.c_str(), M, efC, threads);
     if (space_name.compare("l2") == 0) {
-        if type==0{
+        if (type==0){
             std::cout<< "HNSW" <<std::endl;
             run_dense<pecos::drm_t, pecos::ann::FeatVecDenseL2Simd<float>>(data_dir, model_path, M, efC, max_level, threads, efs);
             std::cout<< "HNSW-FINGER" <<std::endl;
             run_dense_hnsw<pecos::drm_t, pecos::ann::FeatVecDenseL2Simd<float>>(data_dir, model_path, M, efC, max_level, threads, efs);
         }
-        if type==1{
+        if (type==1){
             run_dense<pecos::drm_t, pecos::ann::FeatVecDenseL2Simd<float>>(data_dir, model_path, M, efC, max_level, threads, efs);
         }
         else {
