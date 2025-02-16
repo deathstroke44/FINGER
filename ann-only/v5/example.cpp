@@ -133,94 +133,94 @@ void run_dense(std::string data_dir , char* model_path, index_type M, index_type
 }
 
 
-// template<typename MAT, typename feat_vec_t>
-// void run_dense_hnsw(std::string data_dir , char* model_path, index_type M, index_type efC, index_type max_level, int threads, int efs) {
-//     // data prepare
-//     scipy_npy_t X_trn_npy(data_dir + "/X.trn.npy");
-//     scipy_npy_t X_tst_npy(data_dir + "/X.tst.npy");
-//     scipy_npy_t Y_tst_npy(data_dir + "/Yi.tst.npy");
-//     auto X_trn = npy_to_drm(X_trn_npy);
-//     auto X_tst = npy_to_drm(X_tst_npy);
-//     auto Y_tst = npy_to_drm(Y_tst_npy);
-//     // model prepare
-//     index_type topk = Y_tst.cols;
-//     pecos::ann::HNSW<float, feat_vec_t> indexer;
-//     // pecos::ann::HNSWFinger<float, feat_vec_t> indexer;
-//     //pecos::ann::HNSWProductQuantizer4Bits<float, feat_vec_t> indexer;
-//     std::chrono::steady_clock::time_point start_time;
-//     std::chrono::steady_clock::time_point end_time;
-//     start_time=std::chrono::steady_clock::now();
-//     std::cout<< "step 0" <<std::endl;
-//     std::cout<< "step 1" <<std::endl;
-//     indexer.train(X_trn, M, efC, sub_dimension, 200, threads, max_level);
-//     end_time=std::chrono::steady_clock::now();
-//     std::cout<< "training time: " <<(std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count())<<std::endl;
-//     std::cout<< "After train" <<std::endl;
-//     indexer.save(model_path);
-//     std::cout<< "After save" <<std::endl;
-//     indexer.load(model_path);
+template<typename MAT, typename feat_vec_t>
+void run_dense_hnsw(std::string data_dir , char* model_path, index_type M, index_type efC, index_type max_level, int threads, int efs) {
+    // data prepare
+    scipy_npy_t X_trn_npy(data_dir + "/X.trn.npy");
+    scipy_npy_t X_tst_npy(data_dir + "/X.tst.npy");
+    scipy_npy_t Y_tst_npy(data_dir + "/Yi.tst.npy");
+    auto X_trn = npy_to_drm(X_trn_npy);
+    auto X_tst = npy_to_drm(X_tst_npy);
+    auto Y_tst = npy_to_drm(Y_tst_npy);
+    // model prepare
+    index_type topk = Y_tst.cols;
+    pecos::ann::HNSW<float, feat_vec_t> indexer;
+    // pecos::ann::HNSWFinger<float, feat_vec_t> indexer;
+    //pecos::ann::HNSWProductQuantizer4Bits<float, feat_vec_t> indexer;
+    std::chrono::steady_clock::time_point start_time;
+    std::chrono::steady_clock::time_point end_time;
+    start_time=std::chrono::steady_clock::now();
+    std::cout<< "step 0" <<std::endl;
+    std::cout<< "step 1" <<std::endl;
+    indexer.train(X_trn, M, efC, sub_dimension, 200, threads, max_level);
+    end_time=std::chrono::steady_clock::now();
+    std::cout<< "training time: " <<(std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count())<<std::endl;
+    std::cout<< "After train" <<std::endl;
+    indexer.save(model_path);
+    std::cout<< "After save" <<std::endl;
+    indexer.load(model_path);
 
     
-//     // FILE* fp = fopen(model_path, "rb");
-//     // if (!fp) {
-//     //    // indexer.train(X_trn, M, efC, threads, max_level);
-//     //     indexer.train(X_trn, M, efC, sub_dimension, 200, threads, max_level);
-//     //     std::cout<< "After train" <<std::endl;
-//     //     indexer.save(model_path);
-//     //     std::cout<< "After save" <<std::endl;
-//     //     indexer.load(model_path);
-//     // } else {
-//     //     indexer.load(model_path);
-//     //     fclose(fp);
-//     // }
+    // FILE* fp = fopen(model_path, "rb");
+    // if (!fp) {
+    //    // indexer.train(X_trn, M, efC, threads, max_level);
+    //     indexer.train(X_trn, M, efC, sub_dimension, 200, threads, max_level);
+    //     std::cout<< "After train" <<std::endl;
+    //     indexer.save(model_path);
+    //     std::cout<< "After save" <<std::endl;
+    //     indexer.load(model_path);
+    // } else {
+    //     indexer.load(model_path);
+    //     fclose(fp);
+    // }
 
 
-//     // inference
-//     index_type num_data = X_tst.rows;
-//     auto searcher = indexer.create_searcher();
-//     //searcher.prepare_inference();
+    // inference
+    index_type num_data = X_tst.rows;
+    auto searcher = indexer.create_searcher();
+    //searcher.prepare_inference();
     
-//     searcher.setup_appx_results_containers();
+    searcher.setup_appx_results_containers();
 
-//     double latency = std::numeric_limits<double>::max();
-//     //num_data = 1;
-//     for (int repeat = 0; repeat < 10; repeat++) {
-//         double inner_latency = 0.0;
-//         for (index_type idx = 0; idx < num_data; idx++) {
-//             StopW stopw = StopW();
-//             auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher, num_rerank);
-//             //auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher);
-//             double ss = stopw.getElapsedTimeMicro();
-//             inner_latency += ss;
-//         }
-//         latency = std::min(latency, inner_latency);
-//     }
-//     double recall = 0.0;
-//     double search_time=0.0;
-//     for (index_type idx = 0; idx < num_data; idx++) {
-//         //std::cout<<"QUERY NUMBER : "<<idx<<std::endl;
-//         start_time=std::chrono::steady_clock::now();
-//         auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher, num_rerank);
-//         end_time=std::chrono::steady_clock::now();
-//         search_time=search_time+std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
-//         //auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher);
-//         std::unordered_set<pecos::csr_t::index_type> true_indices;
+    double latency = std::numeric_limits<double>::max();
+    //num_data = 1;
+    for (int repeat = 0; repeat < 10; repeat++) {
+        double inner_latency = 0.0;
+        for (index_type idx = 0; idx < num_data; idx++) {
+            StopW stopw = StopW();
+            auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher);
+            //auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher);
+            double ss = stopw.getElapsedTimeMicro();
+            inner_latency += ss;
+        }
+        latency = std::min(latency, inner_latency);
+    }
+    double recall = 0.0;
+    double search_time=0.0;
+    for (index_type idx = 0; idx < num_data; idx++) {
+        //std::cout<<"QUERY NUMBER : "<<idx<<std::endl;
+        start_time=std::chrono::steady_clock::now();
+        auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher, num_rerank);
+        end_time=std::chrono::steady_clock::now();
+        search_time=search_time+std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
+        //auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher);
+        std::unordered_set<pecos::csr_t::index_type> true_indices;
 
-//         for (auto k = 0u; k < topk; k++) {
-//             true_indices.insert(Y_tst.get_row(idx).val[k]);  // assume Y_tst is ascendingly sorted by distance
-//         }
-//         for (auto dist_idx_pair : ret_pairs) {
-//             if (true_indices.find(dist_idx_pair.node_id) != true_indices.end()) {
-//                 recall += 1.0;
-//             }
-//         }
-//     }
-//     recall = recall / num_data / topk;
-//     latency = latency / num_data / 1000.;
-//     std::cout<< "search time" << " : " << search_time <<std::endl;
-//     std::cout<< "recall" << " : " << recall <<std::endl;
+        for (auto k = 0u; k < topk; k++) {
+            true_indices.insert(Y_tst.get_row(idx).val[k]);  // assume Y_tst is ascendingly sorted by distance
+        }
+        for (auto dist_idx_pair : ret_pairs) {
+            if (true_indices.find(dist_idx_pair.node_id) != true_indices.end()) {
+                recall += 1.0;
+            }
+        }
+    }
+    recall = recall / num_data / topk;
+    latency = latency / num_data / 1000.;
+    std::cout<< "search time" << " : " << search_time <<std::endl;
+    std::cout<< "recall" << " : " << recall <<std::endl;
 
-// }
+}
 
 int main(int argc, char** argv) {
     std::string data_dir = argv[1];
@@ -249,7 +249,7 @@ int main(int argc, char** argv) {
             run_dense<pecos::drm_t, pecos::ann::FeatVecDenseL2Simd<float>>(data_dir, model_path, M, efC, max_level, threads, efs);
         }
         else {
-            // run_dense_hnsw<pecos::drm_t, pecos::ann::FeatVecDenseL2Simd<float>>(data_dir, model_path, M, efC, max_level, threads, efs);
+            run_dense_hnsw<pecos::drm_t, pecos::ann::FeatVecDenseL2Simd<float>>(data_dir, model_path, M, efC, max_level, threads, efs);
         }
         
     }
