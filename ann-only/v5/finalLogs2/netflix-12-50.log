@@ -1,0 +1,42 @@
+HNSW
+step 0
+step 1
+step 7
+step 20
+step 21
+step 22
+step 23
+step 24
+step 25
+step 26
+step 27
+step 28
+step 29
+training time: 2128702
+After train
+After save
+search time : 135436
+recall : 0.98869
+	Command being timed: "./go /users/PAS2671/kabir36/kabir/similarity-search/dataset/netflix /users/PAS2671/kabir36/kabir/similarity-search/dataset/netflix l2 12 100 1 50 0 0 1 0 2"
+	User time (seconds): 3.66
+	System time (seconds): 0.07
+	Percent of CPU this job got: 81%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.60
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 54180
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 15835
+	Voluntary context switches: 844
+	Involuntary context switches: 237
+	Swaps: 0
+	File system inputs: 99344
+	File system outputs: 54576
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

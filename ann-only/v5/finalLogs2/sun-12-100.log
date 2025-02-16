@@ -1,0 +1,42 @@
+HNSW
+step 0
+step 1
+step 7
+step 20
+step 21
+step 22
+step 23
+step 24
+step 25
+step 26
+step 27
+step 28
+step 29
+training time: 89065624
+After train
+After save
+search time : 75479
+recall : 0.9625
+	Command being timed: "./go /users/PAS2671/kabir36/kabir/similarity-search/dataset/sun /users/PAS2671/kabir36/kabir/similarity-search/dataset/sun l2 12 400 1 100 0 0 1 0 2"
+	User time (seconds): 89.73
+	System time (seconds): 0.38
+	Percent of CPU this job got: 97%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:32.40
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 352944
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 22778
+	Voluntary context switches: 4776
+	Involuntary context switches: 842
+	Swaps: 0
+	File system inputs: 340496
+	File system outputs: 373928
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
