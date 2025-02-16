@@ -152,7 +152,7 @@ void run_dense_hnsw(std::string data_dir , char* model_path, index_type M, index
     start_time=std::chrono::steady_clock::now();
     std::cout<< "step 0" <<std::endl;
     std::cout<< "step 1" <<std::endl;
-    indexer.train(X_trn, M, efC, sub_dimension, 200, threads, max_level);
+    indexer.train(X_trn, M, efC, threads, max_level);
     end_time=std::chrono::steady_clock::now();
     std::cout<< "training time: " <<(std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count())<<std::endl;
     std::cout<< "After train" <<std::endl;
@@ -178,9 +178,9 @@ void run_dense_hnsw(std::string data_dir , char* model_path, index_type M, index
     // inference
     index_type num_data = X_tst.rows;
     auto searcher = indexer.create_searcher();
-    //searcher.prepare_inference();
+    // searcher.create_searcher();
     
-    searcher.setup_appx_results_containers();
+    // searcher.setup_appx_results_containers();
 
     double latency = std::numeric_limits<double>::max();
     //num_data = 1;
@@ -200,7 +200,7 @@ void run_dense_hnsw(std::string data_dir , char* model_path, index_type M, index
     for (index_type idx = 0; idx < num_data; idx++) {
         //std::cout<<"QUERY NUMBER : "<<idx<<std::endl;
         start_time=std::chrono::steady_clock::now();
-        auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher, num_rerank);
+        auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher);
         end_time=std::chrono::steady_clock::now();
         search_time=search_time+std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count();
         //auto ret_pairs = indexer.predict_single(X_tst.get_row(idx), efs, topk, searcher);
