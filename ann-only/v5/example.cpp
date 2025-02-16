@@ -245,10 +245,8 @@ int main(int argc, char** argv) {
             // std::cout<< "HNSW" <<std::endl;
             // run_dense_hnsw<pecos::drm_t, pecos::ann::FeatVecDenseL2Simd<float>>(data_dir, model_path, M, efC, max_level, threads, efs);
         }
-        if (type==1){
-            run_dense<pecos::drm_t, pecos::ann::FeatVecDenseL2Simd<float>>(data_dir, model_path, M, efC, max_level, threads, efs);
-        }
         else {
+            std::cout<< "HNSW" <<std::endl;
             run_dense_hnsw<pecos::drm_t, pecos::ann::FeatVecDenseL2Simd<float>>(data_dir, model_path, M, efC, max_level, threads, efs);
         }
         
