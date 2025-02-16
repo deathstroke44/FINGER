@@ -5,7 +5,7 @@ file = open('finger_script.sh', "r")
 content = file.read()
 runId=1
 final_scripts=''
-params=[/12,50,100),(24,50,100),(48,50,500),(12,100,400)]
+params=[(12,50,100),(24,50,100),(48,50,500),(12,100,400)]
 for i in range(0,len(params)):
     M=str(params[i][0])
     EFS=str(params[i][1])
