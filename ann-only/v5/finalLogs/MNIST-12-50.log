@@ -1,0 +1,57 @@
+HNSW-FINGER
+step 0
+step 1
+step 8
+step 7
+step 20
+step 21
+step 22
+step 23
+step 24
+step 25
+step 26
+step 27
+step 28
+step 29
+step 30
+step 31
+step 41
+step 42
+step 43
+step 44
+step 45
+step 
+784 784 68919 68919 68919
+0.771262 68919 0.210341 0.162322 0.198058 0.199184
+53
+step 32
+step 33
+step 24
+training time: 56379087
+After train
+After save
+search time : 27160
+recall : 0.9675
+	Command being timed: "./go /users/PAS2671/kabir36/kabir/similarity-search/dataset/MNIST /users/PAS2671/kabir36/kabir/similarity-search/dataset/MNIST l2 12 100 1 50 0 0 1 0 0"
+	User time (seconds): 56.00
+	System time (seconds): 1.30
+	Percent of CPU this job got: 98%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:57.91
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 2193564
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 245970
+	Voluntary context switches: 4273
+	Involuntary context switches: 148
+	Swaps: 0
+	File system inputs: 652512
+	File system outputs: 652552
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
